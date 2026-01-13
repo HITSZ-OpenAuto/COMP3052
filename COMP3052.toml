@@ -1,0 +1,13 @@
+course_name = "计算机系统"
+course_code = "COMP3052"
+notices = ""
+lecturers = []
+textbooks = []
+online_resources = []
+course = []
+exam = []
+lab = []
+advice = []
+schedule = []
+related_links = []
+misc = []
