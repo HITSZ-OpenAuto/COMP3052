@@ -1,4 +1,6 @@
 # COMP3052 - 计算机系统
+<!-- TOML-META: repo_type="normal" -->
+<!-- TOML-BADGES: source="grades_summary" -->
 
 ![成绩构成](https://img.shields.io/badge/成绩构成-gold)
 ![作业20%](https://img.shields.io/badge/作业-20%25-wheat)
@@ -10,6 +12,9 @@
 2024 级，本门课与[设计与制造B](https://hoa.moe/docs/sophomore-spring/mech2020)作为机器人与智能装备集群[二选一]课程，建议自动化学生修读，开设于大二春季学期，同时本门课还作为计算机科学与技术专业的专业选修课，开设于大三春季学期。
 
 ## 教材与线上资源
+<!-- TOML-SECTION: title="教材与线上资源" -->
+
+<!-- TOML-ITEM: id="item-教材与线上资源-1" -->
 
 - **Computer Systems: A Programmer’s Perspective**（Randal E. Bryant, David R. O'Hallaron / Pearson / Third Edition (2016) / textbook）
 - **计算机系统基础**（袁春风 / 南京大学 / textbook）
