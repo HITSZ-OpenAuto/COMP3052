@@ -1,0 +1,728 @@
+\documentclass[12pt,a4paper]{ctexart}
+
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+
+\geometry{left=2.5cm,right=2.5cm,top=2cm,bottom=2cm}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  frame=single,
+  language=C,
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny,
+}
+
+\title{{\Huge 408 考研真题精选}\\ \Large Cache + 虚拟内存 专题}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+% ============================================================
+% PART 1: QUESTIONS
+% ============================================================
+
+\part{题目}
+
+\section{选择题}
+
+\begin{enumerate}[leftmargin=*]
+
+\item 某计算机按字节编址，数据 Cache 共有 1024 行，采用 4 路组相联映射，主存块大小为 32\,B，若访问主存地址为 1028 的 4 字节数据，则该数据所在主存块对应的组号为（~）
+
+A.~4 \quad B.~16 \quad C.~32 \quad D.~64
+
+\item 某计算机按字节编址，虚拟地址为 16 位，页大小为 256\,B，页表项中包含装入位（P）、页框号（PPN）等字段。TLB 采用 4 路组相联映射，共有 16 个页表项，TLB 表项中包含标记（Tag）、有效位（V）等字段。在主存页表与 TLB 表项同步后，若主存页表中页号 22 对应的页表项中 $\mathrm{P}=0$，$\mathrm{PPN}=\mathrm{2AH}$，则下列不可能出现在组号为 2 的 TLB 表项中的是（~）
+
+A.~$\mathrm{Tag}=\mathrm{05H}$，$\mathrm{V}=1$，$\mathrm{PPN}=\mathrm{1CH}$
+
+B.~$\mathrm{Tag}=\mathrm{06H}$，$\mathrm{V}=1$，$\mathrm{PPN}=\mathrm{2AH}$
+
+C.~$\mathrm{Tag}=\mathrm{16H}$，$\mathrm{V}=0$，$\mathrm{PPN}=\mathrm{2AH}$
+
+D.~$\mathrm{Tag}=\mathrm{1AH}$，$\mathrm{V}=0$，$\mathrm{PPN}=\mathrm{1CH}$
+
+\item 若 64 位的系统采用三级虚拟分页存储管理方式，虚拟地址结构如下表所示，第三级页表所占用的页框数是（~）
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+补充位（25） & 一级页号（9） & 二级页号（9） & 三级页号（9） & 页内偏移（12） \\
+\hline
+\end{tabular}
+\end{center}
+
+A.~1 \quad B.~256 \quad C.~256K \quad D.~256M
+
+\item 现有一 LRU 算法，采用固定分配局部置换的页面置换策略，已为进程分配 3 个页框，页面访问序列为 $\{0,1,2,0,5,1,4,3,0,2,3,2,0\}$，其中 $0,1,2$ 已调入内存。则缺页次数是（~）
+
+A.~5 \quad B.~6 \quad C.~7 \quad D.~8
+
+\item 某计算机主存地址为 24 位，采用分页虚拟存储管理方式，虚拟地址空间大小为 4\,GB，页大小为 4\,KB，按字节编址。某进程的页表部分内容如下表所示。当 CPU 访问虚拟地址 0008\,2840H，虚--实地址转换的结果是（~）
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+虚页号 & 实页号（页框号） & 存在位 \\
+\hline
+82   & 024H & 0 \\
+\hline
+129  & 180H & 1 \\
+\hline
+130  & 018H & 1 \\
+\hline
+\end{tabular}
+\end{center}
+
+A.~得到主存地址 02\,4840H
+
+B.~得到主存地址 18\,0840H
+
+C.~得到主存地址 01\,8840H
+
+D.~检测到缺页异常
+
+\item 某计算机主存地址为 32 位，按字节编址，某 Cache 的数据区容量为 32\,KB，主存块大小为 64\,B，采用 8 路组相联映射方式，该 Cache 中比较器的个数和位数分别为（~）
+
+A.~8, 20 \quad B.~8, 23 \quad C.~64, 20 \quad D.~64, 23
+
+\item 若计算机主存地址为 32 位，按字节编址，Cache 数据区大小为 32\,KB，主存块大小为 32\,B，采用直接映射方式和回写（Write Back）策略，则 Cache 行的位数至少是（~）
+
+A.~275 \quad B.~274 \quad C.~258 \quad D.~257
+
+\item 对于页式虚拟存储管理系统，下列关于存储器层次结构的叙述中，错误的是（~）
+
+A.~Cache--主存层次的交换单位为主存块，主存--外存层次的交换单位为页
+
+B.~Cache--主存层次替换算法由硬件实现，主存--外存层次由软件实现
+
+C.~Cache--主存层次可采用回写法写策略，主存--外存层次通常采用回写法
+
+D.~Cache--主存层次可采用直接映射，主存--外存层次通常采用直接映射
+
+\item 某计算机按字节编址，采用页式虚拟存储管理方式，虚拟地址为 32 位，主存地址为 30 位，页大小为 1\,KB。若 TLB 共有 32 个表项，采用 4 路组相联映射方式，则 TLB 表项中标记字段的位数至少是（~）
+
+A.~17 \quad B.~18 \quad C.~19 \quad D.~20
+
+\item 下列事件中，不是在 MMU 地址转换过程检测的是（~）
+
+A.~访问越权 \quad B.~Cache 缺失 \quad C.~页面缺失 \quad D.~TLB 缺失
+
+\item 某系统采用页式存储管理，用位图管理空闲页框。若页大小为 4\,KB，物理内存大小为 16\,GB，则位图所占空间的大小是（~）
+
+A.~128\,B \quad B.~128\,KB \quad C.~512\,KB \quad D.~4\,MB
+
+\end{enumerate}
+
+\newpage
+
+\section{综合题}
+
+\begin{enumerate}[leftmargin=*,resume]
+
+\item （Cache + 虚拟内存综合）计算机 M 字长为 32 位，按字节编址，数据 Cache 的数据区大小为 32\,KB，采用 8 路组相联，主存块大小为 64\,B，Cache 命中时间为 2 个时钟周期，缺失损失为 200 个时钟周期，采用页式虚拟存储，页大小为 4\,KB。数组 \texttt{d} 的起始地址为 0180\,0020H\,($\mathrm{VA}_{31}\sim\mathrm{VA}_0$)。
+
+\begin{enumerate}[label=(\arabic*)]
+\item 主存地址中的 Cache 组号、块内地址分别占几位？VA 中哪些位可以作为 Cache 索引？
+\item \texttt{d[100]} 的 VA 是多少？\texttt{d[100]} 所在主存块中对应的 Cache 组号是多少？
+\item 设代码已经在 Cache 中，\texttt{i}、\texttt{x} 已装入内存，但不在 Cache，则 \texttt{d[0]} 在其主存块内的偏移量是多少？执行 \texttt{for} 的过程中，访问 \texttt{d} 的 Cache 缺失率和数组元素的平均访问时间分别是多少？（缺失率用百分比表示，保留两位小数）
+\item \texttt{d} 分布在几个页中？若代码已在主存，\texttt{d} 不在主存，则执行 \texttt{for} 的过程中，访问 \texttt{d} 所引起的缺页次数是？
+\end{enumerate}
+
+\begin{lstlisting}[language=C]
+int x, d[2048], i;
+for (i = 0; i < 2048; i++)
+    d[i] = d[i] / x;
+\end{lstlisting}
+
+\item （进程虚拟地址空间）某进程的虚拟地址空间如图，阴影部分为未占用区域，有 C 程序：
+
+\begin{center}
+\begin{tabular}{|c|}
+\hline
+操作系统内核区 \\
+\hline
+用户栈 \\
+\hline
+\rule{0pt}{12pt} \\
+\hline
+共享库的存储映射区 \\
+\hline
+\rule{0pt}{12pt} \\
+\hline
+动态生成的堆（运行时由 \texttt{malloc} 创建） \\
+\hline
+读/写数据段 \\
+\hline
+只读代码段 \\
+\hline
+未使用区 \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{lstlisting}[language=C]
+char *ptr;
+void main() {
+    int length;
+    ptr = (char*) malloc(100);
+    scanf("%s", ptr);
+    length = strlen(ptr);
+    printf("length=%d\n", length);
+    free(ptr);
+}
+\end{lstlisting}
+
+\begin{enumerate}[label=(\arabic*)]
+\item 上述程序执行时，PCB 位于哪个区域？执行 \texttt{scanf()} 等待键盘输入时，该进程处于什么状态？
+\item \texttt{main()} 函数的代码位于哪个区域？其直接调用的哪些函数的功能需要通过执行驱动程序实现？
+\item 变量 \texttt{ptr} 被分配在哪个区域？若变量 \texttt{length} 没有被分配在寄存器中，则会被分配在哪个区域？\texttt{ptr} 指向的字符串位于哪个区域？
+\end{enumerate}
+
+\item （页表与地址转换）某计算机按字节编址，采用页式虚拟存储管理方式，虚拟地址和物理地址的长度均为 32 位，页表项的大小为 4 字节，页大小为 4\,MB，虚拟地址结构如下：
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+页号（10 位） & 页内偏移量（22 位） \\
+\hline
+\end{tabular}
+\end{center}
+
+进程 P 的页表起始虚拟地址为 B8C0\,0000H，被装载到从物理地址 6540\,0000H 开始的连续主存空间中。请回答下列问题：
+
+\begin{enumerate}[label=(\arabic*)]
+\item 若 CPU 在执行进程 P 的过程中，访问虚拟地址 1234\,5678H 时发生了缺页异常，经过缺页异常处理和 MMU 地址转换后得到的物理地址是 BAB4\,5678H。在此次缺页异常的处理中，需要为新缺页分配页框并更新相应的页表项，则该页表项的虚拟地址和物理地址分别是什么？该页表项中的页框号更新后的值是什么？
+\item 进程 P 的页表所在页的页号是什么？该页对应的页表项的虚拟地址是什么？该页表项中的页框号是多少？
+\end{enumerate}
+
+\item （Cache + 缺页综合）已知计算机 M 字长为 32 位，按字节编址，采用请求调页策略的虚拟存储管理方式，虚拟地址为 32 位，页面大小为 4\,KB；数据 Cache 采用 4 路组相联映射，数据区大小为 8\,KB，主存块大小为 32\,B。现有 C 语言程序段如下：
+
+\begin{lstlisting}[language=C]
+for (i = 0; i < 24; i++)
+    for (j = 0; j < 64; j++) a[i][j] = 10;
+\end{lstlisting}
+
+已知二维数组 \texttt{a} 按行优先存放，在虚拟地址空间中分配的起始地址为 0042\,2000H，\texttt{sizeof(int)=4}，假定在 M 上执行上述程序段之前数组 \texttt{a} 不在主存，且在该程序段执行过程中不会发生页面置换。请回答下列问题。
+
+\begin{enumerate}[label=(\arabic*)]
+\item 数组 \texttt{a} 分为几个页面存储？对于数组 \texttt{a} 的访问，会发生几次缺页异常？页故障地址各是什么？
+\item 不考虑变量 \texttt{i} 和 \texttt{j}，该程序段的数据访问是否具有时间局部性？为什么？
+\item 计算机 M 的虚拟地址（$A_{31}\sim A_0$）中哪几位用作块内地址？哪几位用作 Cache 组号？\texttt{a[1][0]} 的虚拟地址是多少？其所在主存块对应的 Cache 组号是多少？
+\item 数组 \texttt{a} 占用多少主存块？假设上述程序段执行过程中数组 \texttt{a} 的访问不会和其他数据发生 Cache 访问冲突，则数组 \texttt{a} 的 Cache 命中率是多少？若将循环中 \texttt{i} 和 \texttt{j} 的次序按如下方式调换：
+
+\begin{lstlisting}[language=C]
+for (j = 0; j < 64; j++)
+    for (i = 0; i < 24; i++) a[i][j] = 10;
+\end{lstlisting}
+
+则数组 \texttt{a} 的 Cache 命中率又是多少？
+\end{enumerate}
+
+\item （TLB 组相联）假设计算机 M 的主存地址为 24 位，按字节编址；采用分页存储管理方式，虚拟地址为 30 位，页大小为 4\,KB；TLB 采用 2 路组相联方式和 LRU 替换策略，共 8 组。请回答下列问题。
+
+\begin{enumerate}[label=(\arabic*)]
+\item 虚拟地址中哪几位表示虚页号？哪几位表示页内地址？
+\item 已知访问 TLB 时虚页号高位部分用作 TLB 标记，低位部分用作 TLB 组号，M 的虚拟地址中哪几位是 TLB 标记？哪几位是 TLB 组号？
+\item 假设 TLB 初始为空，访问的虚页号依次为 10、12、16、7、26、4、12 和 20，在此过程中，哪一个虚页号对应的 TLB 表项被替换？说明理由。
+\item 若将 M 中的虚拟地址位数增加到 32 位，则 TLB 表项的位数增加几位？
+\end{enumerate}
+
+\end{enumerate}
+
+% ============================================================
+% PART 2: SOLUTIONS
+% ============================================================
+
+\newpage
+\part{解答}
+
+\section{选择题解答}
+
+\begin{enumerate}[leftmargin=*]
+
+% --- Q1 ---
+\item \textbf{答案：C（32）}
+
+Cache 共有 1024 行，4 路组相联 $\Rightarrow$ 组数 $= 1024/4 = 256$ 组，组号占 $\log_2 256 = 8$ 位。
+主存块大小 32\,B $\Rightarrow$ 块内地址占 $\log_2 32 = 5$ 位。
+
+主存地址 1028 的二进制分析：
+\[
+1028 = 1024 + 4 = 2^{10} + 2^2
+\]
+地址的低 5 位（块内偏移）：$1028 \bmod 32 = 4$。
+组索引占低 5 位之上的 8 位：$\lfloor 1028/32 \rfloor \bmod 256 = 32 \bmod 256 = 32$。
+
+故该数据所在主存块对应的组号为 32。
+
+% --- Q2 ---
+\item \textbf{答案：A}
+
+虚拟地址 16 位，页大小 256\,B $\Rightarrow$ 页内偏移 8 位，虚页号 8 位。
+TLB：4 路组相联，16 表项 $\Rightarrow$ $16/4 = 4$ 组，组号占 2 位。
+虚页号的低 2 位确定 TLB 组号，高 6 位作为 TLB 标记。
+
+虚页号 $22 = \mathrm{16H} = 0001\,0110_{\mathrm{B}}$。
+低 2 位 $= 10_{\mathrm{B}} = 2$，故该页映射到 TLB 第 2 组。
+高 6 位 $= 0001\,01_{\mathrm{B}} = \mathrm{05H}$，故其 TLB 标记为 05H。
+
+主存页表中页号 22 的 $\mathrm{P}=0$（不在主存），同步后 TLB 中对应的表项有效位 $\mathrm{V}$ 应为 0。
+
+选项 A：$\mathrm{Tag}=\mathrm{05H}$ 对应虚页号 22，但 $\mathrm{V}=1$，与 $\mathrm{P}=0$ 矛盾。故 A 不可能出现。
+
+选项 B：$\mathrm{Tag}=\mathrm{06H}$，组号 2 $\Rightarrow$ 虚页号 $= \mathrm{06H} \ll 2 \mid 2 = \mathrm{1AH} = 26$，该页可能 $\mathrm{V}=1$。
+
+选项 C、D 的 $\mathrm{V}=0$，均可存在于 TLB 中。
+
+% --- Q3 ---
+\item \textbf{答案：A（1）}
+
+虚拟地址结构：补充位 25 + L1(9) + L2(9) + L3(9) + 页内偏移(12) = 64 位。
+
+每级页表包含 $2^9 = 512$ 个页表项。64 位系统中每个页表项占 8\,B，故每级页表大小为：
+\[
+512 \times 8 = 4096\:\mathrm{B} = 4\:\mathrm{KB} = 1\ \text{页}
+\]
+因此每一级页表（包括第三级页表）恰好占用 1 个页框。
+
+% --- Q4 ---
+\item \textbf{答案：B（6）}
+
+采用 LRU 页面置换算法，3 个页框，初始已装入 $\{0,1,2\}$。
+
+设初始 LRU 顺序（最近使用 $\to$ 最久未使用）不影响缺页次数。模拟过程：
+
+\begin{center}
+\begin{tabular}{c|c|c|c}
+访问页 & 页框内容（MRU$\to$LRU） & 缺页？ & 缺页次数 \\
+\hline
+0 & 0, 2, 1 & 命中 & 0 \\
+1 & 1, 0, 2 & 命中 & 0 \\
+2 & 2, 1, 0 & 命中 & 0 \\
+0 & 0, 2, 1 & 命中 & 0 \\
+5 & 5, 0, 2 & 缺页(替换1) & 1 \\
+1 & 1, 5, 0 & 缺页(替换2) & 2 \\
+4 & 4, 1, 5 & 缺页(替换0) & 3 \\
+3 & 3, 4, 1 & 缺页(替换5) & 4 \\
+0 & 0, 3, 4 & 缺页(替换1) & 5 \\
+2 & 2, 0, 3 & 缺页(替换4) & 6 \\
+3 & 3, 2, 0 & 命中 & 6 \\
+2 & 2, 3, 0 & 命中 & 6 \\
+0 & 0, 2, 3 & 命中 & 6 \\
+\end{tabular}
+\end{center}
+
+共缺页 6 次。
+
+% --- Q5 ---
+\item \textbf{答案：C}
+
+虚拟地址 32 位，页大小 4\,KB $\Rightarrow$ 页内偏移 12 位，虚页号 20 位。
+\[
+\mathrm{VA} = \mathrm{0008\,2840H}
+\]
+虚页号 $= \mathrm{VA}[31:12] = \mathrm{00082H} = 130$。
+
+查页表：虚页号 130 $\to$ 实页号 $\mathrm{018H}$，存在位 $=1$。
+页内偏移 $= \mathrm{VA}[11:0] = \mathrm{840H}$。
+
+物理地址 $= \mathrm{018H} \times 4\mathrm{KB} + \mathrm{840H} = \mathrm{018\,840H}$。
+
+即 01\,8840H，选 C。
+
+% --- Q6 ---
+\item \textbf{答案：A（8, 20）}
+
+Cache 数据区 32\,KB，块大小 64\,B $\Rightarrow$ 块数 $= 32\mathrm{K}/64 = 512$。
+8 路组相联 $\Rightarrow$ 组数 $= 512/8 = 64$，组索引占 6 位。
+块内偏移占 $\log_2 64 = 6$ 位。
+Tag 位数 $= 32 - 6 - 6 = 20$。
+
+比较器个数 $=$ 路数 $= 8$，每个比较器比较 Tag，宽度为 20 位。
+
+% --- Q7 ---
+\item \textbf{答案：A（275）}
+
+Cache 数据区 32\,KB，块大小 32\,B $\Rightarrow$ 块数 $= 1024$。
+直接映射 $\Rightarrow$ 行数 $= 1024$，索引位 $= 10$ 位。
+块内偏移 $= 5$ 位，Tag $= 32 - 10 - 5 = 17$ 位。
+
+每行包含：
+\begin{itemize}
+\item 数据：$32 \times 8 = 256$ 位
+\item Tag：17 位
+\item 有效位（V）：1 位
+\item 脏位（Dirty，写回策略需要）：1 位
+\end{itemize}
+
+总计：$256 + 17 + 1 + 1 = 275$ 位。
+
+% --- Q8 ---
+\item \textbf{答案：D}
+
+A：正确。Cache--主存以块为交换单位，主存--外存（虚拟内存）以页为交换单位。
+
+B：正确。Cache 替换由硬件（Cache 控制器）实现，页面替换由操作系统（软件）实现。
+
+C：正确。Cache 可采用写回法（修改仅写 Cache，替换时写回主存）；虚拟内存中，页面被修改后仅在换出时写回磁盘，本质上也是写回法。
+
+D：错误。Cache--主存层次可采用直接映射，但主存--外存层次（页式虚拟存储）采用的是全相联映射——任何虚页可映射到任意物理页框，而非直接映射。
+
+% --- Q9 ---
+\item \textbf{答案：C（19）}
+
+虚拟地址 32 位，页大小 1\,KB $\Rightarrow$ 页内偏移 10 位，虚页号 22 位。
+TLB：32 表项，4 路组相联 $\Rightarrow$ 组数 $= 32/4 = 8$，组索引占 3 位（取自虚页号的低 3 位）。
+
+TLB 标记位数 $=$ 虚页号位数 $-$ 组索引位数 $= 22 - 3 = 19$。
+
+% --- Q10 ---
+\item \textbf{答案：B}
+
+MMU 地址转换过程包含：TLB 查找、页表查找、访问权限检查、缺页检测等。
+
+\begin{itemize}
+\item A：访问越权——MMU 检查页表项中的保护位，属于 MMU 检测范围。
+\item B：Cache 缺失——由 Cache 控制器检测和处理，不属于 MMU 的功能。
+\item C：页面缺失——MMU 检查页表项中的存在位（P 位），若为 0 则触发缺页异常。
+\item D：TLB 缺失——MMU 首先查找 TLB，若未命中即为 TLB 缺失。
+\end{itemize}
+
+故选 B。
+
+% --- Q11 ---
+\item \textbf{答案：C（512\,KB）}
+
+物理内存 16\,GB，页大小 4\,KB。
+\[
+\text{页框总数} = \frac{16 \times 2^{30}}{4 \times 2^{10}} = \frac{2^{34}}{2^{12}} = 2^{22}
+\]
+位图中每位对应一个页框：
+\[
+\text{位图大小} = \frac{2^{22}\ \text{位}}{8\ \text{位/字节}} = 2^{19}\ \mathrm{B} = 512\ \mathrm{KB}
+\]
+
+\end{enumerate}
+
+\newpage
+
+\section{综合题解答}
+
+\begin{enumerate}[leftmargin=*,resume]
+
+% --- Q12: Cache + VM complex ---
+\item \textbf{（Cache + 虚拟内存综合）}
+
+\medskip
+\textbf{(1) Cache 组号和块内地址位数：}
+
+Cache 数据区 32\,KB，块大小 64\,B $\Rightarrow$ 块数 $= 32\mathrm{K}/64 = 512$。
+8 路组相联 $\Rightarrow$ 组数 $= 512/8 = 64$。
+
+\begin{itemize}
+\item 块内地址：$\log_2 64 = 6$ 位
+\item 组号：$\log_2 64 = 6$ 位
+\end{itemize}
+
+页大小为 4\,KB $\Rightarrow$ 页内偏移 12 位（VA[11:0]），涵盖了组号的 6 位和块内地址的 6 位（共 $6+6=12$ 位，正好等于页内偏移）。故 VA[11:6] 可作为 Cache 组索引，VA[5:0] 作为块内地址（VIPT 方式无别名问题）。
+
+\textbf{(2) \texttt{d[100]} 的 VA 及 Cache 组号：}
+
+\begin{align*}
+\texttt{d[100]} \text{ 地址} &= \mathrm{0180\,0020H} + 100 \times 4 \\
+&= \mathrm{0180\,0020H} + 400 \\
+&= \mathrm{0180\,0020H} + \mathrm{190H} \\
+&= \mathrm{0180\,01B0H}
+\end{align*}
+
+取低 12 位 $\mathrm{01B0H} = 0000\,0001\,1011\,0000_{\mathrm{B}}$。
+VA[11:6] $= 0001\,10_{\mathrm{B}} = 6$。
+
+故 \texttt{d[100]} 的 VA 为 0180\,01B0H，所在主存块对应 Cache 组号为 6。
+
+\textbf{(3) 偏移量、缺失率与平均访问时间：}
+
+\texttt{d[0]} 的 VA 为 0180\,0020H。块内偏移 $= \mathrm{VA}[5:0] = 10\,0000_{\mathrm{B}} = 32$。
+
+数组 \texttt{d}：2048 个 int，共 $2048 \times 4 = 8192\:\mathrm{B}$。
+每个主存块 64\,B，可容纳 $64/4 = 16$ 个 int。
+数组共占 $8192/64 = 128$ 个主存块。
+
+每次迭代执行 \texttt{d[i] = d[i] / x}，包含一次读和一次写，共 2 次 Cache 访问。
+总访问次数 $= 2048 \times 2 = 4096$。
+
+按顺序访问 \texttt{d}，每个块在首次读取时缺失（128 次），后续对该块内其他元素的读写均命中。因此缺失次数 $= 128$。
+
+\[
+\text{缺失率} = \frac{128}{4096} \times 100\% = 3.125\% \approx 3.13\%
+\]
+
+\[
+\text{平均访问时间} = 2 + 3.125\% \times 200 = 2 + 6.25 = 8.25 \ \text{时钟周期}
+\]
+
+\textbf{(4) 页面分布与缺页次数：}
+
+\texttt{d} 起始于 0180\,0020H，终止于：
+\[
+\mathrm{0180\,0020H} + 2047 \times 4 = \mathrm{0180\,0020H} + \mathrm{1FFCH} = \mathrm{0180\,201CH}
+\]
+
+页号（VA[31:12]）：
+\begin{itemize}
+\item 起始页号：01800H
+\item 终止页号：01802H
+\end{itemize}
+
+故 \texttt{d} 分布在 3 个页面中（页 01800H、01801H、01802H）。
+
+按顺序访问，每进入一个新页面触发一次缺页（共 3 次）：
+\begin{itemize}
+\item \texttt{d[0]}（01800H 页）：第 1 次缺页
+\item \texttt{d[1016]}（01801H 页）：第 2 次缺页
+\item \texttt{d[2040]}（01802H 页）：第 3 次缺页
+\end{itemize}
+
+缺页次数 $= 3$。
+
+\newpage
+
+% --- Q13: Process address space ---
+\item \textbf{（进程虚拟地址空间）}
+
+\textbf{(1)} PCB（进程控制块）位于\textbf{操作系统内核区}。执行 \texttt{scanf()} 等待键盘输入时，该进程处于\textbf{阻塞态}（等待态/睡眠态），等待 I/O 完成。
+
+\textbf{(2)} \texttt{main()} 函数的代码位于\textbf{只读代码段}。其直接调用的 \texttt{scanf()}、\texttt{printf()} 属于 I/O 操作，需要通过执行\textbf{驱动程序}（设备驱动）实现。
+
+\textbf{(3)}
+\begin{itemize}
+\item \texttt{ptr} 是全局变量（在函数外定义），分配在\textbf{读/写数据段}。
+\item \texttt{length} 是局部变量，若不分配在寄存器中，则分配在\textbf{用户栈}。
+\item \texttt{ptr} 指向的字符串由 \texttt{malloc(100)} 分配，位于\textbf{动态生成的堆}。
+\end{itemize}
+
+\newpage
+
+% --- Q14: Page table and address translation ---
+\item \textbf{（页表与地址转换）}
+
+页大小 4\,MB $= 2^{22}$，页内偏移 22 位，虚页号 10 位。
+页表项大小 4\,B。进程 P 的页表起始 VA = B8C0\,0000H，起始 PA = 6540\,0000H。
+
+\textbf{(1) 缺页异常的页表项：}
+
+访问 VA 1234\,5678H：
+\begin{itemize}
+\item 虚页号 $= \mathrm{VA}[31:22] = 1234\,5678\mathrm{H} \gg 22$
+\end{itemize}
+
+计算：$\mathrm{1234\,5678H} = 0001\,0010\,0011\,0100\,0101\,0110\,0111\,1000_{\mathrm{B}}$。
+高 10 位 $= 0001\,0010\,00_{\mathrm{B}} = \mathrm{048H} = 72$。
+
+虚页号 72 对应的页表项存放位置：
+\begin{align*}
+\text{VA(PTE)} &= \mathrm{B8C0\,0000H} + 72 \times 4 \\
+&= \mathrm{B8C0\,0000H} + 288 \\
+&= \mathrm{B8C0\,0000H} + \mathrm{120H} = \mathrm{B8C0\,0120H} \\[4pt]
+\text{PA(PTE)} &= \mathrm{6540\,0000H} + \mathrm{120H} = \mathrm{6540\,0120H}
+\end{align*}
+
+最终的物理地址 $\mathrm{BAB4\,5678H}$，页内偏移不变（22 位），高 10 位为新的页框号：
+\begin{align*}
+\mathrm{BAB4\,5678H} &= 1011\,1010\,1011\,0100\,0101\,0110\,0111\,1000_{\mathrm{B}} \\
+\text{PPN} &= \text{高 10 位} = 1011\,1010\,10_{\mathrm{B}} = \mathrm{2EAH}
+\end{align*}
+
+\textbf{答案：}
+\begin{itemize}
+\item 页表项的虚拟地址：B8C0\,0120H
+\item 页表项的物理地址：6540\,0120H
+\item 更新后的页框号：2EAH
+\end{itemize}
+
+\textbf{(2) 进程 P 页表所在页的页号：}
+
+页表起始虚拟地址 $\mathrm{B8C0\,0000H}$：
+\begin{align*}
+\text{页号} &= \mathrm{B8C0\,0000H} \gg 22 \\
+&= 1011\,1000\,1100\,0000_{\mathrm{B}}\ \text{高 10 位} \\
+&= 1011\,1000\,11_{\mathrm{B}} = \mathrm{2E3H}
+\end{align*}
+
+该页（虚页号 2E3H）对应的页表项虚拟地址：
+\[
+\mathrm{B8C0\,0000H} + \mathrm{2E3H} \times 4 = \mathrm{B8C0\,0000H} + \mathrm{B8CH} = \mathrm{B8C0\,0B8CH}
+\]
+
+该页表项中的页框号（页表所在物理页框）：
+\[
+\mathrm{6540\,0000H} \gg 22 = 0110\,0101\,01_{\mathrm{B}} = \mathrm{195H}
+\]
+
+\textbf{答案：}
+\begin{itemize}
+\item 页表所在页的页号：2E3H
+\item 对应页表项的虚拟地址：B8C0\,0B8CH
+\item 页框号：195H
+\end{itemize}
+
+\newpage
+
+% --- Q15: Array a Cache + Page Fault ---
+\item \textbf{（Cache + 缺页综合）}
+
+\medskip
+\textbf{(1) 页面存储与缺页异常：}
+
+数组 \texttt{a}：24 行 $\times$ 64 列 $\times$ 4\,B $= 6144\:\mathrm{B} = 6\:\mathrm{KB}$。
+页大小 4\,KB $\Rightarrow$ 需要 $\lceil 6144/4096 \rceil = 2$ 个页面。
+
+起始地址 0042\,2000H，页内偏移 $= 000\mathrm{H}$（恰好从页首开始）：
+\begin{itemize}
+\item 页面 1（页号 00422H）：$\texttt{a[0][0]}$ 至 $\texttt{a[15][63]}$（$16 \times 256 = 4096\:\mathrm{B}$，占满一页）
+\item 页面 2（页号 00423H）：$\texttt{a[16][0]}$ 至 $\texttt{a[23][63]}$（$8 \times 256 = 2048\:\mathrm{B}$）
+\end{itemize}
+
+初始数组 \texttt{a} 不在主存，按行优先顺序访问：
+\begin{itemize}
+\item 访问 \texttt{a[0][0]} 时缺页（页故障地址 $=$ 0042\,2000H）
+\item 访问 \texttt{a[16][0]} 时缺页（页故障地址 $=$ 0042\,3000H）
+\end{itemize}
+
+共 2 次缺页异常。
+
+\textbf{(2) 时间局部性：}
+
+\textbf{不具有}时间局部性。该程序段仅对数组 \texttt{a} 的每个元素执行一次写操作（\texttt{a[i][j] = 10}），每个元素被访问一次后就不再使用。时间局部性要求同一数据在短时间内被多次访问，而此处的访问模式是“一次性写入”，不存在对同一元素的重复访问。
+
+\textbf{(3) Cache 地址划分与 \texttt{a[1][0]}：}
+
+Cache 数据区 8\,KB，块大小 32\,B：
+\begin{itemize}
+\item 块数 $= 8\mathrm{K}/32 = 256$
+\item 4 路组相联 $\Rightarrow$ 组数 $= 256/4 = 64$，组号占 $\log_2 64 = 6$ 位
+\item 块内偏移：$\log_2 32 = 5$ 位
+\item 页内偏移 12 位覆盖了组号 6 位 $+$ 块内偏移 5 位（共 11 位），故 VA[10:5] 为 Cache 组号，VA[4:0] 为块内地址。
+\end{itemize}
+
+\texttt{a[1][0]} 的虚拟地址：
+\[
+\mathrm{0042\,2000H} + 1 \times 64 \times 4 = \mathrm{0042\,2000H} + 256 = \mathrm{0042\,2000H} + \mathrm{100H} = \mathrm{0042\,2100H}
+\]
+
+页内偏移 $\mathrm{100H} = 0001\,0000\,0000_{\mathrm{B}}$。
+VA[10:5] $= 0010\,00_{\mathrm{B}} = 8$。
+
+故 \texttt{a[1][0]} 的 VA $= 0042\,2100\mathrm{H}$，对应 Cache 组号为 8。
+
+\textbf{(4) Cache 命中率：}
+
+数组 \texttt{a} 共 $6144/32 = 192$ 个主存块。
+
+\textbf{原始循环（行优先）：}
+\[
+\texttt{for (i=0; i<24; i++) for (j=0; j<64; j++) a[i][j] = 10;}
+\]
+按行优先顺序访问，每个块（8 个 int）的 8 个元素被连续访问。每块的第一个元素缺失（强制缺失），后续 7 个元素命中。
+
+总访问次数：$24 \times 64 = 1536$。
+缺失次数：192。命中次数：$1536 - 192 = 1344$。
+\[
+\text{命中率} = \frac{1344}{1536} = \frac{7}{8} = 87.50\%
+\]
+
+\textbf{交换循环（列优先）：}
+\[
+\texttt{for (j=0; j<64; j++) for (i=0; i<24; i++) a[i][j] = 10;}
+\]
+按列优先顺序访问。每个块（8 个 int）的 8 个元素在 $j$ 的 8 个连续取值中依次访问（如 \texttt{a[0][0]} 访问块 0，\texttt{a[0][1]} 访问块 0，\ldots, \texttt{a[0][7]} 访问块 0）。
+
+由于 Cache 总容量为 8\,KB（256 块），数组仅需 192 块，且题目假设无其他访问冲突，故所有块均可驻留 Cache。每个块的首次访问为缺失，后续 7 次访问均为命中。
+
+缺失次数仍为 192，命中次数仍为 1344。
+\[
+\text{命中率} = \frac{1344}{1536} = 87.50\%
+\]
+
+\textbf{结论：}两种循环次序下 Cache 命中率均为 $87.50\%$。这是因为数组全部 192 块可完全装入 Cache（$192 < 256$ 且每路 4 个块 $> 3$ 个块/组），无容量和冲突缺失，仅存在强制缺失。
+
+\newpage
+
+% --- Q16: TLB ---
+\item \textbf{（TLB 组相联）}
+
+\medskip
+\textbf{(1) 虚页号与页内地址：}
+
+虚拟地址 30 位，页大小 4\,KB $= 2^{12}$。
+\begin{itemize}
+\item 页内地址：VA[11:0]（12 位）
+\item 虚页号：VA[29:12]（18 位）
+\end{itemize}
+
+\textbf{(2) TLB 标记与组号：}
+
+TLB：2 路组相联，共 8 组 $\Rightarrow$ 组号占 $\log_2 8 = 3$ 位。
+
+虚页号低 3 位作为 TLB 组号，其余高 15 位作为 TLB 标记：
+\begin{itemize}
+\item TLB 组号：VA[14:12]（虚页号的低 3 位）
+\item TLB 标记：VA[29:15]（虚页号的高 15 位）
+\end{itemize}
+
+\textbf{(3) 被替换的虚页号：}
+
+TLB 初始为空，2 路组相联，LRU 替换。访问序列：10, 12, 16, 7, 26, 4, 12, 20。
+
+组号 $=$ 虚页号 mod 8，标记 $=$ 虚页号 $\gg 3$。
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c}
+访问 & 虚页号 & 组号 & 标记 & 命中/缺失 & 该组状态（Way0/Way1） \\
+\hline
+1 & 10 & $10 \bmod 8 = 2$ & 1 & 缺失 & Way0: Tag=1 \\
+2 & 12 & $12 \bmod 8 = 4$ & 1 & 缺失 & Way0: Tag=1 \\
+3 & 16 & $16 \bmod 8 = 0$ & 2 & 缺失 & Way0: Tag=2 \\
+4 & 7  & $7 \bmod 8 = 7$  & 0 & 缺失 & Way0: Tag=0 \\
+5 & 26 & $26 \bmod 8 = 2$ & 3 & 缺失 & Way0: Tag=1, Way1: Tag=3 \\
+6 & 4  & $4 \bmod 8 = 4$  & 0 & 缺失 & Way0: Tag=1, Way1: Tag=0 \\
+7 & 12 & $12 \bmod 8 = 4$ & 1 & 命中 & Way0: Tag=1 (MRU), Way1: Tag=0 (LRU) \\
+8 & 20 & $20 \bmod 8 = 4$ & 2 & 缺失 & 替换 Way1（虚页号 4 的 Tag=0）\\
+\end{tabular}
+\end{center}
+
+访问 20（虚页号 20，组号 4，标记 2）时，第 4 组已满（Way0: Tag=1 对应虚页号 12，Way1: Tag=0 对应虚页号 4）。Way1 是 LRU 项，被替换。
+
+\textbf{被替换的是虚页号 4 对应的 TLB 表项。}
+
+理由：虚页号 20 和虚页号 4、12 均映射到第 4 组。第 4 组中先装入虚页号 12（Way0），再装入虚页号 4（Way1）。虚页号 12 在访问序列的第 7 次被命中，成为 MRU；虚页号 4 成为 LRU。当虚页号 20 访问第 4 组时发生缺失，LRU 替换策略选中虚页号 4 的 TLB 表项进行替换。
+
+\textbf{(4) TLB 表项位数增加：}
+
+虚拟地址由 30 位增至 32 位，页大小不变（4\,KB）。
+\begin{itemize}
+\item 原虚页号：$30 - 12 = 18$ 位，标记 $= 18 - 3 = 15$ 位
+\item 新虚页号：$32 - 12 = 20$ 位，标记 $= 20 - 3 = 17$ 位
+\end{itemize}
+
+TLB 表项包含：Tag + PPN + V + 其他字段。仅 Tag 字段随虚拟地址扩展而增加。
+
+Tag 增加位数 $= 17 - 15 = 2$ 位。TLB 表项位数增加 2 位。
+
+\end{enumerate}
+
+\end{document}
