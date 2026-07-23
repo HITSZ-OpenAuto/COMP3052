@@ -1,15 +1,17 @@
 # COMP3052 - 计算机系统
 <!-- TOML-META: repo_type="normal" -->
-<!-- TOML-BADGES: source="grades_summary" -->
-
-![成绩构成](https://img.shields.io/badge/成绩构成-gold)
-![作业20%](https://img.shields.io/badge/作业-20%25-wheat)
-![实验20%](https://img.shields.io/badge/实验-20%25-wheat)
-![期末考试60%](https://img.shields.io/badge/期末考试-60%25-wheat)
 
 2022 级之前，本门课作为计算机系统方向的限选课开设于大三夏季学期。
-2023 级，本门课作为计算机与电子通信集群的必修课，且为考试课，开设于大二春季学期。
+2023 级起，本门课作为计算机与电子通信集群的必修课，且为考试课，开设于大二春季学期；同时对人工智能班亦为必修、考试课。
 2024 级，本门课与[设计与制造B](https://hoa.moe/docs/sophomore-spring/mech2020)作为机器人与智能装备集群[二选一]课程，建议自动化学生修读，开设于大二春季学期，同时本门课还作为计算机科学与技术专业的专业选修课，开设于大三春季学期。
+
+## 授课教师
+
+<!-- TOML-LECTURERS: part="items" -->
+- 施少怀
+  <!-- TOML-ITEM: id="review-施少怀-1" -->
+  - 负责人工智能班授课（其他专业由其他老师负责）。专业对口，思路极其活跃、清晰；语速快，为人随和。
+    > 文 / [aqua](https://github.com/marine-aqua)，2026-07
 
 ## 教材与线上资源
 <!-- TOML-SECTION: title="教材与线上资源" -->
@@ -32,3 +34,25 @@
 - [计算机系统基础（四）：编程与调试实践](https://www.icourse163.org/course/NJU-1449521162?from=searchPage&outVendor=zw_mooc_pcssjg_)：南京大学（袁春风）MOOC
 - [计算机系统基础（五）：x86模拟器编程实践](https://www.icourse163.org/course/NJU-1464941173?from=searchPage&outVendor=zw_mooc_pcssjg_)：南京大学（袁春风）MOOC
 - [2020 南京大学计算机系统基础习题课](https://www.bilibili.com/video/BV1qa4y1j7xk?p=7&vd_source=9b3ebd8f0d9db179d1b637e52d4b1303)：B站搬运
+
+## 学习资料
+<!-- TOML-SECTION: title="学习资料" -->
+
+<!-- TOML-ITEM: id="item-学习资料-1" -->
+
+- `notes/`：Cache + 虚拟内存专题；CSAPP 抱佛脚指北与修正版（作者：[船](https://github.com/Zethpa)，已获授权上传）
+- `exams/`：往年卷与 2026 春期末回忆版
+- `assignments/`：2026 作业题（无答案）
+
+> 文 / [aqua](https://github.com/marine-aqua)，2026-07
+
+## 课程建议
+<!-- TOML-SECTION: title="课程建议" -->
+
+<!-- TOML-ITEM: id="item-课程建议-1" -->
+
+- 很典型的计算机课程。建议课前预习，避免课上跟不上再在课下补，那样往往更费时间精力
+- 若有余力、且希望在系统方面学得比课内更深，建议做 lab
+- 课本成型于十余年前，第五章优化部分过时较明显；其余章节仍是计算机科学的基础内容，至少作为教学用的简化模型有其独特价值
+
+> 文 / [aqua](https://github.com/marine-aqua)，2026-07

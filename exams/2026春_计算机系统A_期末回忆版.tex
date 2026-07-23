@@ -1,0 +1,312 @@
+\documentclass[11pt,a4paper]{ctexart}
+
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{graphicx}
+
+\geometry{left=2.2cm,right=2.2cm,top=2cm,bottom=2cm}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  frame=single,
+  language=C,
+  showstringspaces=false,
+  breaklines=true,
+  columns=fullflexible,
+}
+
+\setlist[enumerate]{itemsep=0.35em,topsep=0.4em,leftmargin=1.6em}
+\setlist[enumerate,2]{label=（\arabic*）,leftmargin=1.8em}
+
+\newcommand{\blank}{\underline{\hspace{3.2em}}}
+\newcommand{\blanklong}{\underline{\hspace{6em}}}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries 哈尔滨工业大学（深圳）}\\[0.6em]
+  {\Large\bfseries 2026 年春《计算机系统》期末考试试题（A）}\\[0.3em]
+  {\large 回忆还原版}
+\end{center}
+
+\vspace{0.4em}
+\noindent\textbf{说明：}
+\begin{enumerate}[leftmargin=1.5em,itemsep=0.15em,topsep=0.2em]
+  \item 本题卷根据考后回忆与课程作业原题整理，非官方原卷。试卷中的具体数值、选项表述、图表数据可能与原卷有一定出入，仅供复习参考。
+  \item 选择题另有一题回忆不起来。
+\end{enumerate}
+
+\noindent\textbf{考生须知：}本次考试为闭卷考试，考试时间为 120 分钟。
+
+\vspace{0.6em}
+\section*{一、选择题}
+
+\begin{enumerate}
+
+\item 关于数据单位，下列说法正确的是（\hspace{1.2em}）。
+\begin{enumerate}[label=\Alph*.,itemsep=0.1em]
+  \item 1b 表示 1 个字节（Byte）
+  \item 1B 表示 1 个比特（bit）
+  \item word（字）的位数在所有体系结构中固定为 32 位
+  \item word（字）的位数随体系结构而不同（如 32 位机与 64 位机的字长可以不同）
+\end{enumerate}
+
+\item 补码加法运算的溢出判别中，以下说法正确的是（\hspace{1.2em}）。
+\begin{enumerate}[label=\Alph*.,itemsep=0.1em]
+  \item 符号相同的两个数相加必定不会发生溢出
+  \item 符号不同的两个数相加可能发生溢出
+  \item 符号相同的两个数相加必定发生溢出
+  \item 符号不同的两个数相加不可能发生溢出
+\end{enumerate}
+
+\item 关于递归函数调用与栈帧，下列说法错误的是（\hspace{1.2em}）。
+\begin{enumerate}[label=\Alph*.,itemsep=0.1em]
+  \item 每次递归调用通常会在栈上分配一个新的栈帧
+  \item 递归深度过大可能导致栈溢出
+  \item 同一函数的不同递归调用共享同一个栈帧中的局部变量存储
+  \item 返回地址一般保存在对应栈帧中，用于函数返回
+\end{enumerate}
+
+\item Y86-64 的 PIPE 流水线实现中，流水线划分为（\hspace{1.2em}）个阶段。
+\begin{enumerate}[label=\Alph*.,itemsep=0.1em]
+  \item 3
+  \item 4
+  \item 5
+  \item 6
+\end{enumerate}
+
+\item 在存储器层次结构中，下列不属于 CPU 片上存储的是（\hspace{1.2em}）。
+\begin{enumerate}[label=\Alph*.,itemsep=0.1em]
+  \item 寄存器
+  \item L1 Cache
+  \item L2 Cache
+  \item DRAM（主存）
+\end{enumerate}
+
+\item 在链接过程中，关于强符号和弱符号的规则，说法正确的是（\hspace{1.2em}）。
+\begin{enumerate}[label=\Alph*.,itemsep=0.1em]
+  \item 未初始化的全局变量是强符号
+  \item 初始化的全局变量是弱符号
+  \item 函数名默认是强符号
+  \item 局部静态变量在链接时参与全局符号解析，是弱符号
+\end{enumerate}
+
+\item 调用进程创建函数 \texttt{fork()} 之后，关于其返回值，下列说法正确的是（\hspace{1.2em}）。
+\begin{enumerate}[label=\Alph*.,itemsep=0.1em]
+  \item 在父进程和子进程中均返回 0
+  \item 在父进程中返回 0，在子进程中返回父进程的 PID
+  \item 在父进程中返回子进程的 PID，在子进程中返回 0
+  \item 以上均不对
+\end{enumerate}
+
+\item 关于缺页（page fault），下列说法正确的是（\hspace{1.2em}）。
+\begin{enumerate}[label=\Alph*.,itemsep=0.1em]
+  \item 缺页属于异步异常（中断）
+  \item 缺页属于故障（fault），处理完成后通常会重新执行引发缺页的指令
+  \item 发生缺页时程序一定直接终止
+  \item 缺页由用户程序直接处理，无需内核介入
+\end{enumerate}
+
+\item 关于虚拟内存，下列说法不正确的是（\hspace{1.2em}）。
+\begin{enumerate}[label=\Alph*.,itemsep=0.1em]
+  \item 每个进程拥有独立的虚拟地址空间
+  \item DRAM 可看作对磁盘上虚拟地址空间内容的缓存
+  \item 虚拟地址必须映射到物理地址的连续区域
+  \item 虚拟内存有助于简化链接与加载、隔离进程
+\end{enumerate}
+
+\item （本题题干回忆不起来。）
+
+\end{enumerate}
+
+\section*{二、填空题}
+
+\begin{enumerate}[resume]
+\item 假设想用 16 个并行处理节点达到 10 的加速比，原计算程序中并行部分最少占比为 \blank。
+
+\item 64 位系统中 \texttt{short} 数 $-11$ 的机器数二进制表示 \blanklong。
+
+\item 链接器将可重定位目标文件生成可执行目标文件，主要经过 \blank 和 \blank 两个阶段。
+
+\item \texttt{fork} 执行成功后返回 \blank 次；\texttt{execve} 调用成功则返回 \blank 次。
+
+\item 虚拟内存系统借助 \blanklong 这一数据结构，将虚拟页映射到物理页。
+\end{enumerate}
+
+\section*{三、简答题}
+
+\begin{enumerate}[resume]
+\item 列举妨碍编译器进行程序优化的两个主要因素，并简述原理。
+
+\vspace{3.5em}
+
+\item 结合以下程序，解释局部性原理。
+\begin{lstlisting}
+int cal_array_sum(int *a, int n) {
+    int sum = 0;
+    for (int i = 0; i < n; i++)
+        sum += a[i];
+    return sum;
+}
+\end{lstlisting}
+
+\vspace{2.5em}
+
+\item 一函数的源程序以及进程图如下。请写出进程图中空白处的内容。
+\begin{lstlisting}
+void func() {
+    printf("L0\n");
+    if (fork() != 0) {
+        printf("L1\n");
+        if (fork() != 0) {
+            printf("L2\n");
+        }
+    }
+    printf("Bye\n");
+}
+\end{lstlisting}
+
+\begin{center}
+\includegraphics[width=0.92\textwidth]{process.png}
+\end{center}
+
+\noindent （1）\blanklong\qquad
+（2）\blanklong\qquad
+（3）\blanklong\\[0.4em]
+（4）\blanklong\qquad
+（5）\blanklong
+
+\end{enumerate}
+
+\section*{四、计算题}
+
+\begin{enumerate}[resume]
+\item 给出 C 语言变量 \texttt{float x = -0.2;} 在 IEEE 754 单精度浮点数格式下的十六进制表示。
+要求写出推导过程（包括符号位、阶码、尾数的确定过程）。
+
+\vspace{5em}
+
+\item 某磁盘的平均旋转速率为 $10000\,\mathrm{RPM}$，平均寻道时间为 $5\,\mathrm{ms}$，每个扇区大小为 $512\,\mathrm{B}$，每个磁道平均扇区数为 $1000$。现有一个大小为 $10\,\mathrm{MB}$ 的文件连续存放在该磁盘上。请回答：
+\begin{enumerate}
+  \item 平均旋转延迟包括什么？
+  \item 计算该磁盘的平均旋转延迟。
+  \item 该 $10\,\mathrm{MB}$ 文件约占多少个扇区？（按 $1\,\mathrm{MB}=2^{20}\,\mathrm{B}$ 计算）
+  \item 访问该文件的平均访问时间是多少？（写出计算过程）
+\end{enumerate}
+
+\vspace{4em}
+\end{enumerate}
+
+\section*{五、综合题}
+
+\begin{enumerate}[resume]
+\item 请写出 Y86-64 六阶段顺序执行（SEQ）处理器中 \texttt{call Dest} 指令每个阶段的微指令。
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{|p{2.2cm}|p{11cm}|}
+\hline
+\textbf{阶段} & \textbf{call Dest} \\
+\hline
+取指 & \\
+\hline
+译码 & \\
+\hline
+执行 & \\
+\hline
+访存 & \\
+\hline
+写回 & \\
+\hline
+更新 PC & \\
+\hline
+\end{tabular}
+\end{center}
+
+\item 假设某 CPU Cache 的参数为 $S=4$，$E=4$，$B=8$，若 $M=N=64$，请优化如下程序，并说明优化的方法（至少 CPU 与 Cache 各一种）。
+\begin{lstlisting}
+void trans(int M, int N, int A[M][N], int B[N][M]) {
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < N; j++) {
+            B[j][i] = A[i][j];
+        }
+    }
+}
+\end{lstlisting}
+
+\vspace{3em}
+
+\item 某计算机系统情况如下：
+\begin{enumerate}[label=（\arabic*）,itemsep=0.1em]
+  \item 内存按字节寻址，采用小端模式；
+  \item 虚拟地址长度：16 位；
+  \item 使用一级页表，页面大小为 256 字节；
+  \item 物理地址长度为 16 位；
+  \item TLB 为 4 路组相联，共 16 个条目；
+  \item L1 d-Cache 为物理寻址、直接映射，行大小 4 字节，共 8 个组；
+  \item TLB、Cache 的当前内容如表~\ref{tab:tlb}、表~\ref{tab:cache} 所示（数值均为十六进制）。
+\end{enumerate}
+
+\begin{table}[htbp]
+\centering
+\caption{TLB}
+\label{tab:tlb}
+\scriptsize
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+组 & 标记 & PPN & 有效 & 标记 & PPN & 有效 & 标记 & PPN & 有效 & 标记 & PPN & 有效 \\
+\hline
+0 & 03 & 1A & 1 & 12 & 2B & 0 & 07 & 3C & 1 & 1F & 0D & 0 \\
+1 & 05 & 4E & 1 & 09 & 5F & 1 & 11 & 60 & 0 & 02 & 71 & 1 \\
+2 & 0A & 82 & 0 & 14 & 93 & 1 & 08 & A4 & 1 & 16 & B5 & 0 \\
+3 & 01 & C6 & 1 & 0C & D7 & 0 & 13 & E8 & 1 & 06 & F9 & 1 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{L1 d-Cache}
+\label{tab:cache}
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+索引 & 标记 & 有效 & 字节0 & 字节1 & 字节2 & 字节3 \\
+\hline
+0 & 1A & 1 & 11 & 22 & 33 & 44 \\
+1 & 4E & 1 & AA & BB & CC & DD \\
+2 & 93 & 1 & 01 & 23 & 45 & 67 \\
+3 & A4 & 1 & FE & DC & BA & 98 \\
+4 & C6 & 1 & 10 & 32 & 54 & 76 \\
+5 & E8 & 1 & 0F & 1E & 2D & 3C \\
+6 & 71 & 1 & 55 & 66 & 77 & 88 \\
+7 & F9 & 1 & 90 & A0 & B0 & C0 \\
+\hline
+\end{tabular}
+\end{table}
+
+CPU 要从虚拟地址 \texttt{0x05A3} 读取一个字（2 字节），用于后续计算。
+
+请介绍：计算机和操作系统如何通过虚拟地址从内存中读取该值，并将该值返回给 CPU；同时结合表中 TLB（及 Cache）数据，求出最终读到的数值。
+（叙述中应体现地址翻译、TLB、页表/缺页、物理寻址与 Cache/主存访问等关键环节。）
+
+\vspace{6em}
+
+\end{enumerate}
+
+\end{document}
