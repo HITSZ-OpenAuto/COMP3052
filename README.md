@@ -1,5 +1,11 @@
 # COMP3052 - 计算机系统
 <!-- TOML-META: repo_type="normal" -->
+<!-- TOML-BADGES: source="basic_info" -->
+
+![成绩构成](https://img.shields.io/badge/成绩构成-gold)
+![作业20%](https://img.shields.io/badge/作业-20%25-wheat)
+![实验20%](https://img.shields.io/badge/实验-20%25-wheat)
+![期末考试60%](https://img.shields.io/badge/期末考试-60%25-wheat)
 
 2022 级之前，本门课作为计算机系统方向的限选课开设于大三夏季学期。
 2023 级起，本门课作为计算机与电子通信集群的必修课，且为考试课，开设于大二春季学期；同时对人工智能班亦为必修、考试课。
