@@ -7,24 +7,20 @@ description = """
 2024 级，本门课与[设计与制造B](https://hoa.moe/docs/sophomore-spring/mech2020)作为机器人与智能装备集群[二选一]课程，建议自动化学生修读，开设于大二春季学期，同时本门课还作为计算机科学与技术专业的专业选修课，开设于大三春季学期。
 """
 
+[[sections]]
+title = "基本信息"
+
+[[sections.items]]
+content = "【成绩构成】: 作业 20% | 实验 20% | 期末考试 60%"
+
 [lecturers]
 
 [[lecturers.items]]
 name = "施少怀"
 
 [[lecturers.items.reviews]]
-content = """
-负责人工智能班授课（其他专业由其他老师负责）。专业对口，思路极其活跃、清晰；语速快，为人随和。
-"""
+content = "负责人工智能班授课（其他专业由其他老师负责）。专业对口，思路极其活跃、清晰；语速快，为人随和。"
 author = { name = "aqua", link = "https://github.com/marine-aqua", date = "2026-07" }
-
-[[sections]]
-title = "基本信息"
-
-[[sections.items]]
-content = """
-【成绩构成（24 级）】：作业 10% | 实验 20% | 期末考试 70%
-"""
 
 [[sections]]
 title = "教材与线上资源"
