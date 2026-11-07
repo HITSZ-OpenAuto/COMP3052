@@ -1,0 +1,117 @@
+{
+  ".github/workflows/trigger-workflow.yml": {
+    "size": 554,
+    "time": 1794022803,
+    "hash": "ea703be7b70c5cb3586f62c986d562cf213e1071"
+  },
+  "LICENSE": {
+    "size": 20844,
+    "time": 1754197483,
+    "hash": "c82d1e36ccd5f35f5d866df46867d11dac78a2aa"
+  },
+  "README.md": {
+    "size": 4517,
+    "time": 1784774436,
+    "hash": "726117bc9206e79073bd3e97b4ae81fb590c287a"
+  },
+  "assignments/2026_作业一.pdf": {
+    "size": 353793,
+    "time": 1784774427,
+    "hash": "e34a2321e83f60c846e5fd3bb06d455a71fe1a52"
+  },
+  "assignments/2026_作业二.pdf": {
+    "size": 390279,
+    "time": 1784774427,
+    "hash": "e34a2321e83f60c846e5fd3bb06d455a71fe1a52"
+  },
+  "exams/2020夏_计算机系统_期末试卷A.pdf": {
+    "size": 254286,
+    "time": 1784774427,
+    "hash": "e34a2321e83f60c846e5fd3bb06d455a71fe1a52"
+  },
+  "exams/2020夏_计算机系统_期末试卷A答案.pdf": {
+    "size": 278058,
+    "time": 1784774427,
+    "hash": "e34a2321e83f60c846e5fd3bb06d455a71fe1a52"
+  },
+  "exams/2021夏_计算机系统_期末试卷A.pdf": {
+    "size": 362016,
+    "time": 1784774427,
+    "hash": "e34a2321e83f60c846e5fd3bb06d455a71fe1a52"
+  },
+  "exams/2021夏_计算机系统_期末试卷A答案.pdf": {
+    "size": 304391,
+    "time": 1784774427,
+    "hash": "e34a2321e83f60c846e5fd3bb06d455a71fe1a52"
+  },
+  "exams/2022夏_计算机系统_期末试卷A.pdf": {
+    "size": 438222,
+    "time": 1784774427,
+    "hash": "e34a2321e83f60c846e5fd3bb06d455a71fe1a52"
+  },
+  "exams/2022夏_计算机系统_期末试卷A答案.pdf": {
+    "size": 414302,
+    "time": 1784774427,
+    "hash": "e34a2321e83f60c846e5fd3bb06d455a71fe1a52"
+  },
+  "exams/2025春 哈尔滨工业大学（深圳） 计算机系统试题 （A） 答案.pdf": {
+    "size": 225139,
+    "time": 1768401113,
+    "hash": "2ea0322edb102c56cfc13720ca966d34b49545d7"
+  },
+  "exams/2025春 哈尔滨工业大学（深圳） 计算机系统试题 （A）.pdf": {
+    "size": 305614,
+    "time": 1768401113,
+    "hash": "2ea0322edb102c56cfc13720ca966d34b49545d7"
+  },
+  "exams/2026春_计算机系统A_期末回忆版.pdf": {
+    "size": 179092,
+    "time": 1784774427,
+    "hash": "e34a2321e83f60c846e5fd3bb06d455a71fe1a52"
+  },
+  "exams/2026春_计算机系统A_期末回忆版.tex": {
+    "size": 10162,
+    "time": 1784774427,
+    "hash": "e34a2321e83f60c846e5fd3bb06d455a71fe1a52"
+  },
+  "labs/.gitkeep": {
+    "size": 0,
+    "time": 1754197483,
+    "hash": "c82d1e36ccd5f35f5d866df46867d11dac78a2aa"
+  },
+  "notes/2025_船_CSAPP抱佛脚修正.pdf": {
+    "size": 213443,
+    "time": 1784774427,
+    "hash": "e34a2321e83f60c846e5fd3bb06d455a71fe1a52"
+  },
+  "notes/2025_船_CSAPP面向题目的抱佛脚指北.pdf": {
+    "size": 4213348,
+    "time": 1784774427,
+    "hash": "e34a2321e83f60c846e5fd3bb06d455a71fe1a52"
+  },
+  "notes/2026_CSAPP面向题型的笔记_youyun.pdf": {
+    "size": 8670884,
+    "time": 1784883940,
+    "hash": "fe70e2de1285d508dc722cc9ec54526e2aac55bb"
+  },
+  "notes/2026_aqua_cache-vm-408专题.pdf": {
+    "size": 170759,
+    "time": 1784774427,
+    "hash": "e34a2321e83f60c846e5fd3bb06d455a71fe1a52"
+  },
+  "notes/2026_aqua_cache-vm-408专题.tex": {
+    "size": 29402,
+    "time": 1784774427,
+    "hash": "e34a2321e83f60c846e5fd3bb06d455a71fe1a52"
+  },
+  "readme.toml": {
+    "size": 4315,
+    "time": 1784774448,
+    "hash": "d9540add4684dee0e50551d562fef1754aaa5c15"
+  },
+  "slides/.gitkeep": {
+    "size": 0,
+    "time": 1754197483,
+    "hash": "c82d1e36ccd5f35f5d866df46867d11dac78a2aa"
+  }
+}
